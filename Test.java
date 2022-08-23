@@ -7,51 +7,55 @@ public class Test {
 	//Eingabe einer neuen Kiste
 	static void eingabe(int[][]argEingabe) {
 		//Variabeln anlegen
-		int nummer,breite,laenge,hoehe;
+		int kistenNummer,breite,läenge,höhe;
+		// Do while schleife erstellen 
 		do {
-			nummer = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie bitte eine Kistennummer ein zwischen 1 -75 ein."));
+			//Eingabe der Kistennummer
+			kistenNummer = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie bitte eine Kistennummer ein zwischen 1 -75 ein."));
 			
-			if (nummer > 0 && nummer<=argEingabe.length)
-				if (argEingabe[nummer-1][0]==0) {
+			if (kistenNummer > 0 && kistenNummer<=argEingabe.length)
+				if (argEingabe[kistenNummer-1][0]==0) {
 					
-					argEingabe[nummer-1][0] =nummer;
+					argEingabe[kistenNummer-1][0] =kistenNummer;
 					
 					breite = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die breite ein:"));
-					argEingabe[nummer-1][1] = breite;
-					laenge = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die laenge ein:"));
-					argEingabe[nummer-1][2] = laenge;
-					hoehe = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die hoehe ein:"));
-					argEingabe[nummer-1][3] = hoehe;
+					argEingabe[kistenNummer-1][1] = breite;
+					läenge = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die laenge ein:"));
+					argEingabe[kistenNummer-1][2] = läenge;
+					höhe = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die hoehe ein:"));
+					argEingabe[kistenNummer-1][3] = höhe;
 				}
 				else {
-					System.out.println("\nDie Kistennummer ist schon vergeben");
+					System.out.println("\nDie Kistennummer ist schon vorhanden.");
 				}
 		}
-		while(nummer <=0 || nummer>argEingabe.length);
+		while(kistenNummer <=0 || kistenNummer>argEingabe.length);
 		
 	}
-	//Zeigt daten einer vorhandenen Kiste
+	
+	//Daten einer vorhandenen Kiste anzeigen
 	static void  anzeigen(int [][] argAnzeigen) {
 		int suche;
 		suche =Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die Kistennummer ein."));
 		for(int element=0; element<argAnzeigen.length; element++){
             if(suche > 0 && suche <= argAnzeigen.length && argAnzeigen[element][0] == suche){
-            	System.out.print("\nDie Daten der Kiste sind "+Arrays.toString(argAnzeigen[element]));
+            	System.out.println("Die Daten der Kiste sind "+Arrays.toString(argAnzeigen[element]));
             	return;
             	}
         }
 		if (suche != argAnzeigen.length) {
-    		System.out.print("Die Kiste ist nich vorhanden.");
+    		System.out.println("Die Kistenummer ist nich vorhanden.");
         }
 		
 	}
-	//Liste zeigt alle vorhandenen Daten aller Kisten
+	
+	//Zeigt alle vorhandenen Daten aller Kisten aufgelistet
 	static void liste(int [][] argListe) {
 		int counter = 0;
-		for (int i =0; i < argListe.length; i++) {
-			for (int j = 0; j < argListe[i].length; j++)
-				if (argListe[i][j] != 0) {
-					System.out.print(argListe[i][j] + " ");
+		for (int index =0; index < argListe.length; index++) {
+			for (int j = 0; j < argListe[index].length; j++)
+				if (argListe[index][j] != 0) {
+					System.out.print(argListe[index][j] + " ");
 					counter++;
 					if (counter >= 4) {
 						System.out.print("\n");
@@ -62,31 +66,32 @@ public class Test {
 		}
 	
 	
-	static void loeschen(int [][] argLoeschen) {
-		 int kistenNummer,breite,länge,höhe;
+	static void löschen(int [][] argLöschen) {
+		 int kistenNummer;
 
 	     kistenNummer = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die Kistennummer ein die geloscht werden soll."));
 	        
-	     if (kistenNummer <= argLoeschen.length) {
-				
-	    	 	
-				argLoeschen[kistenNummer -1][0] = 0;
-				
-				
-				argLoeschen[kistenNummer -1][1] = 0;
-				
-				
-				argLoeschen[kistenNummer -1][2] = 0;
-				
-				
-				argLoeschen[kistenNummer -1][3] = 0;
-			}
-	     if (kistenNummer != argLoeschen.length) {
-	    	 System.out.print("Die Kistenummer ist nicht vorhanden./n");
+	     if (kistenNummer > 0 && kistenNummer <= argLöschen.length) {
+	    	 if (argLöschen[kistenNummer -1][0] != 0) {
+	    		//Die Werte der Kiste auf 0 setzen
+					argLöschen[kistenNummer -1][0] = 0;
+					
+					
+					argLöschen[kistenNummer -1][1] = 0;
+					
+					
+					argLöschen[kistenNummer -1][2] = 0;
+					
+					
+					argLöschen[kistenNummer -1][3] = 0;
+	    	 }else {
+	    		 System.out.println("Die Kistenummer ist nicht vorhanden.");
+	    	 }
 	     }
 	     }
-	static void Aendern(int [][] argAendern) {
-		int kistenNummer, breite,länge,höhe;
+	
+	static void ändern(int [][] argAendern) {
+		int kistenNummer,breite,länge,höhe;
 		
 		kistenNummer = Integer.parseInt(JOptionPane.showInputDialog("Geben Sie die Kistennumer ein die Geändert werden soll:"));
 		
@@ -101,29 +106,24 @@ public class Test {
 				höhe = Integer.parseInt(JOptionPane.showInputDialog("Höhe"));
 				argAendern[kistenNummer -1][3] = höhe;
 				}else {
-					System.out.print("Die Kistennummer ist nicht vorhanden./n");
+					System.out.println("Die Kistennummer ist nicht vorhanden.");
 				}
 			}
-			
-		
 	}
 	
-
 	public static void main(String[] args) {
 		//Array anlegen
 		int[][] kisten = new int [75][4];
-		int[][] keine = new int [0][0];
 		//Variabeln anlegen
-		String funktioneinlesen;
-		String input;
+		String funktionEinlesen,input;
 		char funktionen;
 		
 		
 		
 		//Auswahlmenu 
 		do {
-			funktioneinlesen = JOptionPane.showInputDialog("W�hlen Sie eine Funktion aus:\n A) Neue Kiste eingeben.\n B) L�schen der Daten einer vorhandenen Kiste.\n C) �ndern der Daten einer vorhandenen Kiste.\n D) Anzeigen der Daten einer vorhandenen Kiste.\n E) Aller vorhande Kisten anzeigen.");
-			funktionen = funktioneinlesen.charAt(0);
+			funktionEinlesen = JOptionPane.showInputDialog("W�hlen Sie eine Funktion aus:\n A) Neue Kiste eingeben.\n B) L�schen der Daten einer vorhandenen Kiste.\n C) �ndern der Daten einer vorhandenen Kiste.\n D) Anzeigen der Daten einer vorhandenen Kiste.\n E) Aller vorhande Kisten anzeigen.");
+			funktionen = funktionEinlesen.charAt(0);
 			
 			switch(funktionen) {
 			case 'a':
@@ -132,11 +132,11 @@ public class Test {
 				break;
 			case 'b':
 			case 'B':
-				loeschen (kisten);
+				löschen (kisten);
 				break;
 			case 'c':
 			case 'C':
-				Aendern(kisten);
+				ändern(kisten);
 				break;
 			case 'd':
 			case 'D':
